@@ -10,13 +10,9 @@
 3. ConcretePrototype (Furniture) — конкретная реализация мебели. Содержит метод Clone(), использующий системный механизм MemberwiseClone() для создания точной копии объекта.
 4. Продукт (Furniture экземпляр) — содержит имя, тип мебели, цвет, материал и метод GetImagePath(), который динамически формирует путь к изображению на основе текущего состояния клонированного объекта.
 
-
 Реализация без прототипа:
 
-namespace FurnitureCatalog
-{
-    // Типы мебели для выбора
-    public enum FurnitureType { Chair, Table, Sofa, Armchair }
+![5 лаба-Классы лаб 2-1-2](https://github.com/user-attachments/assets/ec170539-9847-4d64-8ca5-792892d0e631)
 
     public class Furniture
     {
@@ -45,15 +41,8 @@ namespace FurnitureCatalog
 
         public override string ToString() => $"{Name} ({Color}) - {Price}₽";
     }
-}
 
-using System;
-using System.Drawing;
-using System.IO;
-using System.Windows.Forms;
 
-namespace FurnitureCatalog
-{
     public partial class Form1 : Form
     {
         public Form1()
@@ -116,15 +105,11 @@ namespace FurnitureCatalog
             confirm.ShowDialog();
         }
     }
-}
 
 С прототипом:
 
-using System;
-using System.IO;
+![5 лаба-Классы лаб 2-1-1](https://github.com/user-attachments/assets/99c9ef89-a8e3-49da-8d90-4343f2f35a65)
 
-namespace FurnitureCatalog
-{
 
     public interface IFurniturePrototype
     {
@@ -159,15 +144,8 @@ namespace FurnitureCatalog
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", $"{typeEng}_{colorEng}.jpg");
         }
     }
-}
 
-using System;
-using System.Drawing;
-using System.IO;
-using System.Windows.Forms;
 
-namespace FurnitureCatalog
-{
     public partial class Form1 : Form
     {
         // Поле prototype
@@ -232,4 +210,12 @@ namespace FurnitureCatalog
             confirm.ShowDialog();
         }
     }
-}
+
+    Выводы:
+
+    В реализации с паттерном Prototype работа строится через клонирование существующего эталона. Client (Form1) просто запрашивает копию через интерфейс IFurniturePrototype. Это делает код расширяемым, если появится столешница или кресло, то не потребуется переписывать логику формы — достаточно создать новый класс, реализующий интерфейс, и он будет клонироваться как и базовый стул.
+
+В реализации без паттерна форма сама создаёт объекты через new Furniture(), из-за чего возникает жесткая зависимость. Если мы решим изменить конструктор мебели добавив новые поля, проект просто перестанет собираться, пока мы вручную не исправим каждый вызов new во всех частях программы. В такой архитектуре легко допустить ошибку или передать параметры не в том порядке.
+
+Но для работы такого масштаба паттерн избыточен.
+
