@@ -1,0 +1,6 @@
+﻿  MyForm.cpp
+C:\Users\Александр Михайлович\Desktop\ООАП\ООАП2\лаб2\lab2withpattern\lab2withpattern\RealYouTubeService.h(33,38): warning C4101: e: неиспользованная локальная переменная
+  (компиляция исходного файла "MyForm.cpp")
+  
+  MyForm.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+  lab2withpattern.vcxproj -> C:\Users\Александр Михайлович\Desktop\ООАП\ООАП2\лаб2\lab2withpattern\x64\Debug\lab2withpattern.exe

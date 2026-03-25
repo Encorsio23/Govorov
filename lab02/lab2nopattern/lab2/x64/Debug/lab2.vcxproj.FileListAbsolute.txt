@@ -1,0 +1,2 @@
+C:\Users\Александр Михайлович\Desktop\ООАП\ООАП2\лаб2\lab2\lab2\x64\Debug\lab2.vcxproj.AssemblyReference.cache
+C:\Users\Александр Михайлович\Desktop\ООАП\ООАП2\лаб2\lab2nopattern\lab2\x64\Debug\lab2.vcxproj.AssemblyReference.cache
