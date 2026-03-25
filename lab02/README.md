@@ -17,6 +17,7 @@ downloadVideo(id: String): void — инициирует загрузку кон
 
 Поле - service: IVideoService — хранит ссылку на объект реального сервиса для делегирования запросов.
 
-![1 лаба-Классы лаб 2-2](https://github.com/user-attachments/assets/401ebc55-a8a7-4e71-8eac-63345ace3b38)
+![1 лаба-Классы лаб 2-2](https://github.com/user-attachments/assets/c6be3c32-01b2-4d70-9cb7-07afc8db9973)
+
 
 
