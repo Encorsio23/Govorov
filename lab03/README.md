@@ -21,7 +21,9 @@
     * В классе `Light`: `v.visitLight(this)`
     * В классе `Thermostat`: `v.visitThermostat(this)`
     * В классе `SmartLock`: `v.visitLock(this)`
-    *(Механизм Double Dispatch позволяет посетителю узнать точный тип объекта, с которым он работает).*
+      
+      <img width="1184" height="592" alt="1 лаба-классы лаб 2-3" src="https://github.com/user-attachments/assets/0d513822-2434-4be0-a127-e221158631a7" />
+
 
 * **`visitLight(l: Light)` / `visitThermostat(t: Thermostat)`**: Методы внутри Посетителя, которые содержат бизнес-логику сценария. Например, `NightModeVisitor` через эти методы выключает свет и переводит термостат в эконом-режим.
 
