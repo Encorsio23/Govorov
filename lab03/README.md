@@ -44,112 +44,112 @@ SmartHome: Класс «структуры объектов».
 addDevice(d: Element) — добавление устройства в систему.
 applyScenario(v: Visitor) — применение выбранного сценария ко всем устройствам через цикл.
 
-   import tkinter as tk
-from tkinter import ttk, messagebox, Frame, Label, Button, Spinbox, Scale, HORIZONTAL
-import random
-from datetime import datetime, timedelta
-from abc import ABC, abstractmethod
-
-
-# интерфейс Visitor
-class Visitor(ABC):
-    @abstractmethod
-    def visitLight(self, light): pass
-
-    @abstractmethod
-    def visitThermostat(self, thermostat): pass
-
-    @abstractmethod
-    def visitLock(self, lock): pass
-
-
-# интерфейс Element
-class Element(ABC):
-    def __init__(self, name):
-        self.name = name
-
-    @abstractmethod
-    def accept(self, visitor: Visitor):
-        pass
-
-
-# Конкретные элементы
-class Light(Element):
-    def __init__(self, name):
-        super().__init__(name)
-        self.status = False
-        self.brightness = 0
-        self.color = "#FFFFFF"
-
-    def accept(self, visitor: Visitor):
-        visitor.visitLight(self)
-
-
-class Thermostat(Element):
-    def __init__(self, name):
-        super().__init__(name)
-        self.current_temp = random.uniform(15.0, 30.0)
-        self.target_temp = 22.0
-
-    def get_system_status(self):
-        diff = float(self.target_temp) - self.current_temp
-        if abs(diff) < 0.5: return "Выключен"
-        return "Отопление" if diff > 0 else "Охлаждение"
-
-    def accept(self, visitor: Visitor):
-        visitor.visitThermostat(self)
-
-
-class SmartLock(Element):
-    def __init__(self, name):
-        super().__init__(name)
-        self.is_locked = True
-        self.battery_level = random.randint(15, 100)
-        self.last_access = (datetime.now() - timedelta(hours=2)).strftime("%H:%M")
-
-    def accept(self, visitor: Visitor):
-        visitor.visitLock(self)
-
-
-# Сценарии (посетители)
-class NightModeVisitor(Visitor):
-    def visitLight(self, light):
-        light.status = False
-        light.brightness = 0
-
-    def visitThermostat(self, thermostat):
-        thermostat.target_temp = 18.0
-
-    def visitLock(self, lock):
-        lock.is_locked = True
-        lock.last_access = datetime.now().strftime("%H:%M")
-
-
-class PartyModeVisitor(Visitor):
-    def visitLight(self, light):
-        light.status = True
-        light.brightness = 100
-        light.color = f'#{random.randint(100, 255):02x}{random.randint(100, 255):02x}{random.randint(100, 255):02x}'
-
-    def visitThermostat(self, thermostat):
-        thermostat.target_temp = 24.0
-
-    def visitLock(self, lock):
-        lock.is_locked = False
-        lock.last_access = datetime.now().strftime("%H:%M")
-
-
-#SmartHome
-class SmartHome:
-    def __init__(self):
-        self.devices = []
-
-    def addDevice(self, device):
-        self.devices.append(device)
-
-    def applyScenario(self, visitor: Visitor):
-        for device in self.devices:
-            device.accept(visitor)
+      import tkinter as tk
+      from tkinter import ttk, messagebox, Frame, Label, Button, Spinbox, Scale, HORIZONTAL
+      import random
+      from datetime import datetime, timedelta
+      from abc import ABC, abstractmethod
+      
+      
+      # интерфейс Visitor
+      class Visitor(ABC):
+          @abstractmethod
+          def visitLight(self, light): pass
+      
+          @abstractmethod
+          def visitThermostat(self, thermostat): pass
+      
+          @abstractmethod
+          def visitLock(self, lock): pass
+      
+      
+      # интерфейс Element
+      class Element(ABC):
+          def __init__(self, name):
+              self.name = name
+      
+          @abstractmethod
+          def accept(self, visitor: Visitor):
+              pass
+      
+      
+      # Конкретные элементы
+      class Light(Element):
+          def __init__(self, name):
+              super().__init__(name)
+              self.status = False
+              self.brightness = 0
+              self.color = "#FFFFFF"
+      
+          def accept(self, visitor: Visitor):
+              visitor.visitLight(self)
+      
+      
+      class Thermostat(Element):
+          def __init__(self, name):
+              super().__init__(name)
+              self.current_temp = random.uniform(15.0, 30.0)
+              self.target_temp = 22.0
+      
+          def get_system_status(self):
+              diff = float(self.target_temp) - self.current_temp
+              if abs(diff) < 0.5: return "Выключен"
+              return "Отопление" if diff > 0 else "Охлаждение"
+      
+          def accept(self, visitor: Visitor):
+              visitor.visitThermostat(self)
+      
+      
+      class SmartLock(Element):
+          def __init__(self, name):
+              super().__init__(name)
+              self.is_locked = True
+              self.battery_level = random.randint(15, 100)
+              self.last_access = (datetime.now() - timedelta(hours=2)).strftime("%H:%M")
+      
+          def accept(self, visitor: Visitor):
+              visitor.visitLock(self)
+      
+      
+      # Сценарии (посетители)
+      class NightModeVisitor(Visitor):
+          def visitLight(self, light):
+              light.status = False
+              light.brightness = 0
+      
+          def visitThermostat(self, thermostat):
+              thermostat.target_temp = 18.0
+      
+          def visitLock(self, lock):
+              lock.is_locked = True
+              lock.last_access = datetime.now().strftime("%H:%M")
+      
+      
+      class PartyModeVisitor(Visitor):
+          def visitLight(self, light):
+              light.status = True
+              light.brightness = 100
+              light.color = f'#{random.randint(100, 255):02x}{random.randint(100, 255):02x}{random.randint(100, 255):02x}'
+      
+          def visitThermostat(self, thermostat):
+              thermostat.target_temp = 24.0
+      
+          def visitLock(self, lock):
+              lock.is_locked = False
+              lock.last_access = datetime.now().strftime("%H:%M")
+      
+      
+      #SmartHome
+      class SmartHome:
+          def __init__(self):
+              self.devices = []
+      
+          def addDevice(self, device):
+              self.devices.append(device)
+      
+          def applyScenario(self, visitor: Visitor):
+              for device in self.devices:
+                  device.accept(visitor)
 
 * **visitLight(l: Light) / visitThermostat(t: Thermostat)**: Методы внутри Посетителя, которые содержат бизнес-логику сценария. Например, NightModeVisitor через эти методы выключает свет и переводит термостат в эконом-режим.
 
