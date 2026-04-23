@@ -24,6 +24,22 @@
  
       <img width="1184" height="592" alt="1 лаба-классы лаб 2-3" src="https://github.com/user-attachments/assets/17292b79-a929-4b8a-8ade-190d0ab4edf1" />
 
+
+### 1. Интерфейсы
+
+#### `DeviceVisitor`
+Содержит методы для посещения каждого конкретного типа устройства.
+```python
+class DeviceVisitor(ABC):
+    @abstractmethod
+    def visit_light(self, light): pass
+    
+    @abstractmethod
+    def visit_thermostat(self, thermostat): pass
+    
+    @abstractmethod
+    def visit_lock(self, lock): pass
+
 * **visitLight(l: Light) / visitThermostat(t: Thermostat)**: Методы внутри Посетителя, которые содержат бизнес-логику сценария. Например, NightModeVisitor через эти методы выключает свет и переводит термостат в эконом-режим.
 
 * **applyScenario(v: Visitor)**: Метод в классе SmartHome, который в цикле обходит все устройства в списке devices и вызывает у каждого метод accept(v).
