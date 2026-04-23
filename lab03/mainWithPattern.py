@@ -6,40 +6,40 @@ from abc import ABC, abstractmethod
 
 
 # интерфейс Visitor
-class DeviceVisitor(ABC):
+class Visitor(ABC):
     @abstractmethod
-    def visit_light(self, light): pass
+    def visitLight(self, light): pass
 
     @abstractmethod
-    def visit_thermostat(self, thermostat): pass
+    def visitThermostat(self, thermostat): pass
 
     @abstractmethod
-    def visit_lock(self, lock): pass
+    def visitLock(self, lock): pass
 
 
 # интерфейс Element
-class SmartDevice(ABC):
+class Element(ABC):
     def __init__(self, name):
         self.name = name
 
     @abstractmethod
-    def accept(self, visitor: DeviceVisitor):
+    def accept(self, visitor: Visitor):
         pass
 
 
 # Конкретные элементы
-class Light(SmartDevice):
+class Light(Element):
     def __init__(self, name):
         super().__init__(name)
         self.status = False
         self.brightness = 0
         self.color = "#FFFFFF"
 
-    def accept(self, visitor: DeviceVisitor):
-        visitor.visit_light(self)
+    def accept(self, visitor: Visitor):
+        visitor.visitLight(self)
 
 
-class Thermostat(SmartDevice):
+class Thermostat(Element):
     def __init__(self, name):
         super().__init__(name)
         self.current_temp = random.uniform(15.0, 30.0)
@@ -50,45 +50,45 @@ class Thermostat(SmartDevice):
         if abs(diff) < 0.5: return "Выключен"
         return "Отопление" if diff > 0 else "Охлаждение"
 
-    def accept(self, visitor: DeviceVisitor):
-        visitor.visit_thermostat(self)
+    def accept(self, visitor: Visitor):
+        visitor.visitThermostat(self)
 
 
-class SmartLock(SmartDevice):
+class SmartLock(Element):
     def __init__(self, name):
         super().__init__(name)
         self.is_locked = True
         self.battery_level = random.randint(15, 100)
         self.last_access = (datetime.now() - timedelta(hours=2)).strftime("%H:%M")
 
-    def accept(self, visitor: DeviceVisitor):
-        visitor.visit_lock(self)
+    def accept(self, visitor: Visitor):
+        visitor.visitLock(self)
 
 
 # Сценарии (посетители)
-class NightModeVisitor(DeviceVisitor):
-    def visit_light(self, light):
+class NightModeVisitor(Visitor):
+    def visitLight(self, light):
         light.status = False
         light.brightness = 0
 
-    def visit_thermostat(self, thermostat):
+    def visitThermostat(self, thermostat):
         thermostat.target_temp = 18.0
 
-    def visit_lock(self, lock):
+    def visitLock(self, lock):
         lock.is_locked = True
         lock.last_access = datetime.now().strftime("%H:%M")
 
 
-class PartyModeVisitor(DeviceVisitor):
-    def visit_light(self, light):
+class PartyModeVisitor(Visitor):
+    def visitLight(self, light):
         light.status = True
         light.brightness = 100
         light.color = f'#{random.randint(100, 255):02x}{random.randint(100, 255):02x}{random.randint(100, 255):02x}'
 
-    def visit_thermostat(self, thermostat):
+    def visitThermostat(self, thermostat):
         thermostat.target_temp = 24.0
 
-    def visit_lock(self, lock):
+    def visitLock(self, lock):
         lock.is_locked = False
         lock.last_access = datetime.now().strftime("%H:%M")
 
@@ -98,10 +98,10 @@ class SmartHome:
     def __init__(self):
         self.devices = []
 
-    def add_device(self, device):
+    def addDevice(self, device):
         self.devices.append(device)
 
-    def apply_scenario(self, visitor: DeviceVisitor):
+    def applyScenario(self, visitor: Visitor):
         for device in self.devices:
             device.accept(visitor)
 
@@ -120,9 +120,9 @@ class SmartHomeApp:
         self.term = Thermostat("Спальня")
         self.lock = SmartLock("Входная дверь")
 
-        self.home.add_device(self.light)
-        self.home.add_device(self.term)
-        self.home.add_device(self.lock)
+        self.home.addDevice(self.light)
+        self.home.addDevice(self.term)
+        self.home.addDevice(self.lock)
 
         # Отрисовка интерфейса (как в версии без паттерна)
         notebook = ttk.Notebook(root)
@@ -194,8 +194,8 @@ class SmartHomeApp:
         self.last_access_lbl.pack(anchor="w")
         Button(f, text="ОТКРЫТЬ/ЗАКРЫТЬ", command=self.on_lock_toggle).pack(pady=10)
 
-    def run_scenario(self, visitor: DeviceVisitor):
-        self.home.apply_scenario(visitor)
+    def run_scenario(self, visitor: Visitor):
+        self.home.applyScenario(visitor)
         self.update_all_views()
         messagebox.showinfo("Умный дом", f"Применен сценарий: {visitor.__class__.__name__}")
 
