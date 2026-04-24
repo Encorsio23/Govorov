@@ -22,7 +22,8 @@
     * В классе Thermostat: v.visitThermostat(this)
     * В классе SmartLock: v.visitLock(this)
  
-      <img width="1184" height="592" alt="1 лаба-классы лаб 2-3" src="https://github.com/user-attachments/assets/17292b79-a929-4b8a-8ade-190d0ab4edf1" />
+<img width="1184" height="592" alt="1 лаба-классы лаб 2-3" src="https://github.com/user-attachments/assets/142109ec-a206-468a-aaa9-97866fa990fb" />
+
 
 ### 1. Интерфейсы
 - Visitor: Абстрактный интерфейс посетителя. Объявляет методы `visitLight`, `visitThermostat` и `visitLock` для взаимодействия с каждым типом оборудования.
