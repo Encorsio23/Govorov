@@ -29,13 +29,13 @@
 - Visitor: Абстрактный интерфейс посетителя. Объявляет методы `visitLight`, `visitThermostat` и `visitLock` для взаимодействия с каждым типом оборудования.
 - Element: Абстрактный интерфейс элемента системы. Содержит метод `accept(v: Visitor)`, реализующий механизм двойной диспетчеризации.
 
-### 2. Устройства (ConcreteElements)
+### 2. Устройства ConcreteElements
 Классы устройств хранят состояние и атрибуты в формате `camelCase` согласно UML:
 - Light: Поля `status`, `brightness`, `color`.
 - Thermostat: Поля `currentTemp`, `targetTemp`, `mode`.
 - SmartLock: Поля `isLocked`, `lastAccessed`, `batteryLevel`.
 
-### 3. (ConcreteVisitors)
+### 3. Сценарии ConcreteVisitors
 Классы, инкапсулирующие логику управления устройствами:
 - NightModeVisitor: Устанавливает экономичный режим.
 - PartyModeVisitor: Включает праздничный режим.
