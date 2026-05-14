@@ -231,6 +231,7 @@ public class AppWithPattern extends JFrame {
         SwingUtilities.invokeLater(AppWithPattern::new);
     }
 }
+```
 
 ### 1. Интерфейс службы
 * **`Itravel Service`**: Базовый интерфейс 
