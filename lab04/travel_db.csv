@@ -1,0 +1,5 @@
+City,BasePrice,Time,Date,Transports,Hotels,CityPhoto
+Moscow,150.0,2h,2026-06-01,Поезд:50;Самолет:120,Hostel M:20:https://picsum.photos/id/119/200/120;Radisson:180:https://picsum.photos/id/164/200/120,https://picsum.photos/id/122/400/200
+Paris,300.0,4h,2026-07-15,Автобус:80;Самолет (Эконом):200;Самолет (Бизнес):600,Amour Hotel:100:https://picsum.photos/id/1040/200/120;Ritz Paris:850:https://picsum.photos/id/1039/200/120,https://picsum.photos/id/1055/400/200
+Tokyo,500.0,10h,2026-09-20,Самолет:450,Capsule Inn:30:https://picsum.photos/id/250/200/120;Hilton Tokyo:350:https://picsum.photos/id/249/200/120,https://picsum.photos/id/200/400/200
+Dubai,400.0,5h,2026-11-05,Самолет (Эконом):300;Самолет (Первый класс):1500,City Max:80:https://picsum.photos/id/400/200/120;Burj Al Arab:2500:https://picsum.photos/id/412/200/120,https://picsum.photos/id/380/400/200
