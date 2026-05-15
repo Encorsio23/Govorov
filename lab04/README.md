@@ -29,7 +29,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-// Модель данных
 class TravelInfo {
     public String city, traveltime, date, cityPhoto, transportsRaw, hotelsRaw;
     public double basePrice;
@@ -41,12 +40,10 @@ class TravelInfo {
     }
 }
 
-// Интерфейс сервиса
 interface ItravelService {
     TravelInfo getTravelInfo(String city);
 }
 
-// Менеджер базы данных
 class DBmanager {
     public String dbPath;
 
@@ -68,7 +65,6 @@ class DBmanager {
     }
 }
 
-// Реальная стратегия
 class RealTravelService implements ItravelService {
     private DBmanager db = new DBmanager("travel_db.csv"); 
 
@@ -78,7 +74,6 @@ class RealTravelService implements ItravelService {
     }
 }
 
-// Стратегия-заглушка
 class StubTravelService implements ItravelService {
     private Map<String, TravelInfo> stubTravels = new HashMap<>(); 
 
@@ -106,7 +101,6 @@ class StubTravelService implements ItravelService {
     }
 }
 
-// Графический интерфейс (GUI)
 public class AppWithPattern extends JFrame {
     private JComboBox<String> cityPicker = new JComboBox<>(new String[]{"Moscow", "Paris", "Tokyo", "Dubai"});
     private JPanel cardPanel = new JPanel(new BorderLayout());
